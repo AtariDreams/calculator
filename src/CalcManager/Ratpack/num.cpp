@@ -597,14 +597,11 @@ bool lessnum(_In_ PNUMBER a, _In_ PNUMBER b)
 bool zernum(_In_ PNUMBER a)
 
 {
-    int32_t length;
-    MANTTYPE* pcha;
-    length = a->cdigit;
-    pcha = a->mant;
+    MANTTYPE* pcha = a->mant;
 
     // loop over all the digits until you find a nonzero or until you run
     // out of digits
-    for (length = a->cdigit; length > 0; length--)
+    for (int32_t length = a->cdigit; length > 0; length--)
     {
         if (*pcha)
         {
