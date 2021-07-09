@@ -1035,7 +1035,7 @@ bool stripzeroesnum(_Inout_ PNUMBER pnum, int32_t starting)
     }
 
     // Check we haven't gone too far, and we are still looking at zeros.
-    while ((cdigits > 0) && !(*pmant))
+    while ((cdigits > 0) && (*pmant == 0))
     {
         // move to next significant digit and keep track of digits we can
         // ignore later.
@@ -1048,7 +1048,7 @@ bool stripzeroesnum(_Inout_ PNUMBER pnum, int32_t starting)
     if (fstrip)
     {
         // Remove them.
-        memmove(pnum->mant, pmant, (int)(cdigits * sizeof(MANTTYPE)));
+        memmove(pnum->mant, pmant, static_cast<size_t>(cdigits) * sizeof(MANTTYPE)));
         // And adjust exponent and digit count accordingly.
         pnum->exp += (pnum->cdigit - cdigits);
         pnum->cdigit = cdigits;
