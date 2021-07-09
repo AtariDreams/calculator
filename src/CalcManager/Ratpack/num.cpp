@@ -340,7 +340,7 @@ void remnum(_Inout_ PNUMBER* pa, _In_ PNUMBER b, uint32_t radix)
         }
 
         // Subtract the working remainder from the remainder holder.
-        tmp->sign = -1 * (*pa)->sign;
+        tmp->sign = -(*pa)->sign;
         addnum(pa, tmp, radix);
 
         destroynum(tmp);
@@ -604,13 +604,15 @@ bool zernum(_In_ PNUMBER a)
 
     // loop over all the digits until you find a nonzero or until you run
     // out of digits
-    while (length-- > 0)
+    for (length = a->cdigit; length > 0; length--)
     {
-        if (*pcha++)
+        if (*pcha)
         {
             // One of the digits isn't zero, therefore the number isn't zero
             return false;
         }
+
+        pcha++;
     }
     // All of the digits are zero, therefore the number is zero
     return true;
