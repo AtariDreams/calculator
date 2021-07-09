@@ -970,7 +970,7 @@ uint64_t rattoUi64(_In_ PRAT prat, uint32_t radix, int32_t precision)
     destroyrat(prat32);
     destroyrat(pint);
 
-    return (((uint64_t)hi << 32) | lo);
+    return (((static_cast<uint64_t>(hi)) << 32) | lo);
 }
 
 //-----------------------------------------------------------------------------
@@ -1030,7 +1030,7 @@ bool stripzeroesnum(_Inout_ PNUMBER pnum, int32_t starting)
     // point pmant to the LSD
     if (cdigits > starting)
     {
-        pmant += cdigits - starting;
+        pmant = pmant + cdigits - starting;
         cdigits = starting;
     }
 
