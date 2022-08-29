@@ -300,7 +300,8 @@ public enum class GraphViewChangedReason
 
         void UpdateTracingChanged();
         void HandleTracingMovementTick(Object ^ sender, Object ^ e);
-        void HandleKey(bool keyDown, Windows::System::VirtualKey key);
+        void HandleKey(Windows::System::VirtualKey key);
+        void HandleKeyDown(Windows::System::VirtualKey key);
 
         void SetEquationsAsValid();
         void SetEquationErrors();

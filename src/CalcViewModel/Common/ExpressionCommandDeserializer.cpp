@@ -42,7 +42,7 @@ COpndCommand CommandDeserializer::DeserializeOperand()
     std::shared_ptr<std::vector<int>> cmdVector = std::make_shared<std::vector<int>>();
     auto cmdVectorSize = m_dataReader->ReadUInt32();
 
-    for (unsigned int j = 0; j < cmdVectorSize; ++j)
+    for (auto j = cmdVectorSize; j > 0; --j)
     {
         int eachOpndcmd = m_dataReader->ReadInt32();
         cmdVector->push_back(eachOpndcmd);
