@@ -66,7 +66,6 @@ namespace CalculatorUITestFramework
             this.Service.StartInfo.RedirectStandardOutput = true;
             this.Service.OutputDataReceived += (sender, e) => OutputDataReceived?.Invoke(this, e);
 
-            bool isLaunched = false;
             string msgTxt =
                 $"The local WinAppDriver server has not been started: {this.FileName.FullName} Arguments: {this.Arguments}. " +
                 "\n";
@@ -83,7 +82,7 @@ namespace CalculatorUITestFramework
                 throw new Exception(msgTxt, e);
             }
 
-            isLaunched = Ping();
+            bool isLaunched = Ping();
             if (!isLaunched)
             {
                 DestroyProcess();
@@ -93,7 +92,7 @@ namespace CalculatorUITestFramework
             }
         }
 
-        public bool IsRunning
+        private bool IsRunning
         {
             get
             {
@@ -136,6 +135,7 @@ namespace CalculatorUITestFramework
             }
             catch (Exception)
             {
+                // ignored
             }
             finally
             {
