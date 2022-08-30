@@ -15,7 +15,7 @@ namespace CalculatorApp
         {
             InLine,
             Above
-        };
+        }
 
         public sealed class OverflowTextBlock : Windows.UI.Xaml.Controls.Control
         {
